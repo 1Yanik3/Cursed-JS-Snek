@@ -20,10 +20,10 @@ var upDirection = false;
 var downDirection = false;
 var inGame = true;    
 
-const DOT_SIZE = 20;
+const DOT_SIZE = 50;
 const DELAY = 200;
-const C_HEIGHT = 600;
-const C_WIDTH = 600;    
+const C_HEIGHT = 800;
+const C_WIDTH = 800;    
 
 const LEFT_KEY = 37;
 const RIGHT_KEY = 39;
@@ -76,17 +76,10 @@ function doDrawing() {
     
     if (inGame) {
 
-        ctx.drawImage(apple, apple_x, apple_y);
+        ctx.drawImage(apple, apple_x, apple_y, DOT_SIZE, DOT_SIZE)
 
-        for (var z = 0; z < dots; z++) {
-            
-            if (z == 0) {
-                ctx.drawImage(head, x[z], y[z]);
-            } else {
-                ctx.drawImage(ball, x[z], y[z]);
-                console.log("ball", x, y)
-            }
-        }   
+        for (var z = 0; z < dots; z++)
+            ctx.drawImage(z == 0 ? head : ball, x[z], y[z], DOT_SIZE, DOT_SIZE)
 
     } else {
 
@@ -138,7 +131,7 @@ function checkCollision() {
 function locateApple() {
     var r = Math.floor(Math.random() * C_WIDTH / DOT_SIZE);
     apple_x = r * DOT_SIZE;
-    console.log("not snek", r * DOT_SIZE)
+    // console.log("not snek", r * DOT_SIZE)
 
     r = Math.floor(Math.random() * C_HEIGHT / DOT_SIZE);
     apple_y = r * DOT_SIZE;
